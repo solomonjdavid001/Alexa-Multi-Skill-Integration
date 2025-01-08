@@ -1,6 +1,9 @@
 # Alexa-Multi-Skill-Integration
 
-A TypeScript-based Alexa skill project that demonstrates the integration of multiple skills (Custom + Smart-Home Skills), currently featuring a Joke skill that fetches and tells jokes using the JokeAPI. 🚀
+A TypeScript-based Alexa skill project that demonstrates the integration of multiple skills (Custom + Smart-Home Skills), currently featuring:
+
+- A **Joke skill** that fetches and tells jokes using the JokeAPI.
+- A **Smart-Home skill** to control a light bulb by turning it on and off. 🚀
 
 ---
 
@@ -8,6 +11,7 @@ A TypeScript-based Alexa skill project that demonstrates the integration of mult
 
 - **Custom Alexa and Smart-Home Alexa Skill Integration** using the ASK SDK.
 - **Joke Skill**: Fetches random jokes from the JokeAPI and delivers them with flair. 😄
+- **Smart-Home Skill**: Controls smart devices like light bulbs for seamless automation.
 - **TypeScript-Powered**: Ensures type safety and a better development experience.
 - **Dockerized**: Simplified setup and deployment with Docker.
 - **Automated CI/CD Pipeline**: CircleCI is used for seamless builds and deployments.
@@ -30,7 +34,8 @@ Before you begin, ensure you have the following:
 The project uses a flexible configuration system to manage external services:
 
 1. **JokeAPI Configuration**: Set the JokeAPI URL in `src/config/config.ts`.
-2. **Environment-Specific Configurations**: Use `.env` files to manage variables for different environments.
+2. **Smart-Home Skill Configuration**: Configure the light bulb endpoints and states in `src/config/smart-home-config.ts`.
+3. **Environment-Specific Configurations**: Use `.env` files to manage variables for different environments.
 
 ---
 
@@ -97,6 +102,7 @@ The project uses CircleCI to automate builds and deployments:
 ## 🎯 Future Enhancements
 
 - Add more Alexa skills (e.g., Trivia, Weather Updates).
+- Expand smart-home device controls (e.g., thermostats, locks).
 - Implement a robust logging and monitoring system.
 - Expand support for multi-language jokes.
 
