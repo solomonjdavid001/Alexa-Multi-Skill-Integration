@@ -13,19 +13,17 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       # Configure AWS credentials
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_REGION
-      
-      # Build and push Docker image
-      - aws-ecr/build-and-push-image:
-          repo: ${ECR_REPOSITORY_NAME}
-          tag: "latest"
-          dockerfile: Dockerfile
-          path: .
-          registry-id: AWS_ACCOUNT_ID
-
+      - run:
+          name: Authenticate Docker with ECR
+          command: aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+      - run:
+          name: Build Docker image
+          command: docker build -t $ECR_REPOSITORY_NAME .
+      - run:
+          name: Push Docker image to ECR
+          command: |
+            docker tag $ECR_REPOSITORY_NAME $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY_NAME:$CIRCLE_BUILD_NUM
+            docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY_NAME:$CIRCLE_BUILD_NUM
 workflows:
   version: 2
   build-deploy:
