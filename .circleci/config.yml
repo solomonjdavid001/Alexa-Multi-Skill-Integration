@@ -21,7 +21,7 @@ jobs:
       # Build and push Docker image
       - aws-ecr/build-and-push-image:
           repo: ${ECR_REPOSITORY_NAME}
-          tag: "${CIRCLE_BUILD_NUM},latest"
+          tag: "latest"
           dockerfile: Dockerfile
           path: .
           registry-id: AWS_ACCOUNT_ID
