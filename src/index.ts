@@ -9,7 +9,7 @@ export const handler = async (event, context) => {
     return await customSkillHandler(event, context);
   }
 
-  if ('session' in event) {
+  if ('directive' in event) {
     console.log('Routing to Smart Home Skill Handler');
     const response = await smartHomeSkillHandler(event, context);
     return response;
